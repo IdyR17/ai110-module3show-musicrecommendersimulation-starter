@@ -145,11 +145,22 @@ Loaded 20 songs from data/songs.csv
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+### Weight shift: half the genre, double the energy
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+**What I changed:** Genre went from 2.0 to 1.0 points, and energy went from 1.5 to 3.0 points. The max score went from 5.0 to 5.5.
+
+**Did the math still work?** Yes. Every score stayed between 0 and 5.5, and the reasons for each song still added up to its score.
+
+**What happened:** 5 of my 7 profiles kept the same top 5. Only 2 changed:
+
+| Profile | Before | After |
+|---|---|---|
+| Sad + high energy | #1 was Empty Platform, the only blues/sad song | Empty Platform dropped out of the top 5. All 5 songs were just loud songs |
+| Calm acoustic metal fan | #2 was Iron Requiem, a loud metal song | Iron Requiem dropped out. All 5 were calm, acoustic songs |
+
+For High-Energy Pop, Rooftop Lights (happy "indie pop") got much closer to Gym Hero, from 1.05 points behind to only 0.09 behind.
+
+**More accurate or just different?** Just different. The metal fan's list got better, but the sad listener lost the only sad song. With energy worth so much, the system mostly ranks by loudness. It still put a dark rock song in the happy pop fan's top 5. So I went back to genre 2.0 and energy 1.5.
 
 ---
 
