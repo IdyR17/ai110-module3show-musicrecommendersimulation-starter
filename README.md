@@ -95,15 +95,48 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
+Output from `python -m src.main`:
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Loaded 20 songs from data/songs.csv
+
+============================================================
+  Top 5 recommendations
+  Profile: lofi | chill | energy 0.40 | likes acoustic
+============================================================
+
+  1. Midnight Coding - LoRoom
+     Score: 4.99 / 5.00
+       * genre matches (lofi) +2.0
+       * mood matches (chill) +1.0
+       * energy 0.42 vs target 0.40 +1.49
+       * acoustic sound +0.5
+
+  2. Library Rain - Paper Lanterns
+     Score: 4.92 / 5.00
+       * genre matches (lofi) +2.0
+       * mood matches (chill) +1.0
+       * energy 0.35 vs target 0.40 +1.42
+       * acoustic sound +0.5
+
+  3. Focus Flow - LoRoom
+     Score: 4.00 / 5.00
+       * genre matches (lofi) +2.0
+       * energy 0.40 vs target 0.40 +1.50
+       * acoustic sound +0.5
+
+  4. Spacewalk Thoughts - Orbit Bloom
+     Score: 2.59 / 5.00
+       * mood matches (chill) +1.0
+       * energy 0.28 vs target 0.40 +1.09
+       * acoustic sound +0.5
+
+  5. Coffee Shop Stories - Slow Stereo
+     Score: 1.97 / 5.00
+       * energy 0.37 vs target 0.40 +1.47
+       * acoustic sound +0.5
+
+============================================================
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
