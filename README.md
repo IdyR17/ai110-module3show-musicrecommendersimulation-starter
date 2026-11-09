@@ -17,17 +17,44 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Apps like Spotify and TikTok mix two ideas. One looks at what people with similar taste listen to (collaborative filtering). The other looks at what a song actually sounds like (content-based filtering). They learn from things like likes, skips, replays, and playlists, then rank the best options for you. My version is much simpler. It only uses content-based filtering. It compares each song to what the user says they like and gives it a score. It cares most about genre, then mood, then how close the song's energy is to what the user wants.
 
-Some prompts to answer:
+**Song features I use:**
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+- `genre`: the type of music (pop, lofi, rock...)
+- `mood`: how it feels (happy, chill, intense...)
+- `energy`: how calm or intense it is, from 0 to 1
+- `acousticness`: how acoustic it is, from 0 to 1
 
-You can include a simple diagram or bullet list if helpful.
+I skip `tempo_bpm` and `danceability` because in this dataset they basically go up and down with energy, so they would just repeat it.
+
+**UserProfile features I use:**
+
+- `favorite_genre`
+- `favorite_mood`
+- `target_energy`: the energy level they want, from 0 to 1
+- `likes_acoustic`: true or false
+
+**Algorithm Recipe:**
+
+```
+INPUT     User prefs + 20 songs from songs.csv
+   ↓
+PROCESS   Score every song:
+            Genre matches?     +2.0
+            Mood matches?      +1.0
+            Energy close?      up to +1.5 (the closer, the more points)
+            Acoustic fits?     +0.5
+   ↓
+OUTPUT    Sort by score → show the top 5
+```
+
+**Biases I expect:**
+
+- **Genre wins too much.** A great song with the right mood and energy can lose to an average song that just has the right genre.
+- **Exact matches only.** "Chill" and "relaxed" count as different moods, so close songs get no credit.
+- **Small genres lose out.** Most genres have only one song, so fans of those genres get fewer good matches.
+- **It only knows what the user tells it.** It doesn't learn from likes or skips, so it never finds anything surprising.
 
 ---
 
